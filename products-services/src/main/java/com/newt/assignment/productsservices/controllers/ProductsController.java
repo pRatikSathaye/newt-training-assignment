@@ -1,16 +1,28 @@
 package com.newt.assignment.productsservices.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
-import org.jboss.logging.Param;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mongodb.client.result.UpdateResult;
 import com.newt.assignment.productsservices.model.Product;
 import com.newt.assignment.productsservices.services.ProductsService;
 
@@ -27,8 +39,40 @@ public class ProductsController {
 	}
 	
 	@GetMapping("/getProductById/{productId}")
-	public Optional<Product> getProductById(@PathVariable String productId ) {
-		System.out.println("ProductID" + productId);
+	public Optional<Product> getProductById(@Valid @PathVariable String productId ) {
 		return productService.getProductById(productId);
+	}
+
+	@PostMapping("/addProduct")
+	public Product addNewProduct(@Valid @RequestBody Product productData) {
+		return productService.addNewProduct(productData);
+	}
+
+	@PutMapping("/updateProduct/{productId}")
+	public UpdateResult updateProduct(@Valid @PathVariable String productId, @Valid @RequestBody Product productData) {
+		return productService.updateProduct(productId, productData);
+	}
+
+	@DeleteMapping("/deleteProductById/{productId}")
+	public void deleteProductById(@Valid @PathVariable String productId) {
+		productService.deleteProduct(productId);
+	}
+
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public Map<String, Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
+		Map<String, Map<String, String>> errors = new HashMap<>();
+		ex.getBindingResult().getAllErrors().forEach((error) -> {
+			String fieldName = ((FieldError)error).getField();
+			String errorMessage = error.getDefaultMessage();
+			Map<String, String> errorDetails = new HashMap<>();
+			errorDetails.put("field", fieldName);
+			errorDetails.put("code", error.getCode());
+			errorDetails.put("message", error.getDefaultMessage());
+			errors.put(fieldName, errorDetails);
+			System.out.println("FieldName:" + fieldName + " error Message:" + errorMessage);
+		});
+
+		return errors;
 	}
 }
