@@ -29,4 +29,8 @@ export class Product {
       this.warrantyDetails = warrantyDetails;
       this.units = units;
     }
+
+    getId() {
+      return this._id;
+    }
 }

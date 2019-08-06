@@ -5,12 +5,12 @@
   <div class="col-md-7">
     <h3>Product Details</h3>
     <hr>
-    <p class="font-weight-normal">Product Name</p>
-    <p class="font-weight-normal">Product Description</p>
-    <p class="font-weight-normal">Price</p>
-    <p class="font-weight-normal">Units</p>
+    <p class="font-weight-normal">Product Name: {{ product.name }}</p>
+    <p class="font-weight-normal">Product Description: {{ product.description }}</p>
+    <p class="font-weight-normal">Price: {{ product.price }} {{product.currency}}</p>
+    <p class="font-weight-normal">Units: {{ product.units }} Unit</p>
     <div class="btn-actions">
-      <button type="button" class="btn btn-primary mr-1">Edit</button>
+      <button type="button" class="btn btn-primary mr-1" (click)="onEdit()">Edit</button>
       <button type="button" class="btn btn-danger">Delete</button>
     </div>
   </div>

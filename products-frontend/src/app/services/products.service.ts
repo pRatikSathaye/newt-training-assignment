@@ -30,6 +30,10 @@ export class ProductsService {
   ];
 
   getProducts() {
-    return this.products;
+    return this.products.slice();
+  }
+
+  getProductById(id: string) {
+    return this.products.find(product => id === product.getId());
   }
 }

@@ -7,7 +7,7 @@
     class="img-responsive"
   />
   <div class="card-body">
-    <h5 class="card-title">{{ product.name }}</h5>
+    <h5 class="card-title" style="cursor: pointer" (click)="onNavigate(product._id)">{{ product.name }}</h5>
     <p class="card-text">{{ product.description }}</p>
     <div class="btn-group">
       <button type="button" class="btn btn-sm btn-outline-secondary">View</button>

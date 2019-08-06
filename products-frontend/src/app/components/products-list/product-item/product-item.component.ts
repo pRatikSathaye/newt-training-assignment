@@ -1,5 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Product } from 'src/app/models/product.model';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { Product } from '../../../models/product.model';
 
 @Component({
   selector: 'app-product-item',
@@ -9,9 +11,13 @@ import { Product } from 'src/app/models/product.model';
 export class ProductItemComponent implements OnInit {
   @Input() product: Product;
 
-  constructor() { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+  }
+
+  onNavigate(productId: string) {
+    this.router.navigate([productId], { relativeTo: this.route });
   }
 
 }
