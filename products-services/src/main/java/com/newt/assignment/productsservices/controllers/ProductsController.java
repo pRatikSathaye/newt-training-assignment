@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,26 +34,31 @@ public class ProductsController {
 	@Autowired
 	private ProductsService productService;
 	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/getAllProducts")
 	public List<Product> getAllProducts() {
 		return productService.getAllProducts();
 	}
 	
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping("/getProductById/{productId}")
 	public Optional<Product> getProductById(@Valid @PathVariable String productId ) {
 		return productService.getProductById(productId);
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("/addProduct")
 	public Product addNewProduct(@Valid @RequestBody Product productData) {
 		return productService.addNewProduct(productData);
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@PutMapping("/updateProduct/{productId}")
 	public UpdateResult updateProduct(@Valid @PathVariable String productId, @Valid @RequestBody Product productData) {
 		return productService.updateProduct(productId, productData);
 	}
 
+	@CrossOrigin(origins = "http://localhost:4200")
 	@DeleteMapping("/deleteProductById/{productId}")
 	public void deleteProductById(@Valid @PathVariable String productId) {
 		productService.deleteProduct(productId);

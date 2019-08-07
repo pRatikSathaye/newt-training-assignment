@@ -38,8 +38,14 @@ public class ProductsService {
 	public UpdateResult updateProduct(String productId, Product productData) {
 		MongoOperations ops = new MongoTemplate(new SimpleMongoDbFactory(new MongoClient(), "products-db"));
 		Update update = new Update();
+		update.set("name", productData.getName());
 		update.set("description", productData.getDescription());
+		update.set("category", productData.getCategory());
 		update.set("price", productData.getPrice());
+		update.set("currency", productData.getCurrency());
+		update.set("images", productData.getImages());
+		update.set("warrantyDetails", productData.getWarrantyDetails());
+		update.set("units", productData.getUnits());
 		return ops.updateFirst(query(where("_id").is(productId)), update, Product.class);
 	}
 
