@@ -1,0 +1,84 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Products Services",
+		"_postman_id": "3ffbe834-b769-e167-18d9-52bf172d62da",
+		"description": "Products Services\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get ALL Products",
+			"request": {
+				"url": "http://localhost:8080/api/products/getAllProducts",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "GetALL Products"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Product by ID",
+			"request": {
+				"url": "http://localhost:8080/api/products/getProductById/5d47f82d0786213e1696295e",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "Get a product by its ID"
+			},
+			"response": []
+		},
+		{
+			"name": "Add new Product",
+			"request": {
+				"url": "http://localhost:8080/api/products/addProduct",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Realme K20 Pro\",\n\t\"description\": \"A device which solve all your daily tasks smoothly\",\n\t\"price\": \"15000\",\n\t\"currency\": \"Rs\",\n\t\"category\": \"Electornics\",\n\t\"units\": \"1\",\n\t\"images\": [],\n\t\"warrantyDetails\": \"The manufacturer is providing 1 year of warranty on this product\"\n}\n"
+				},
+				"description": "Add new Product"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Product",
+			"request": {
+				"url": "http://localhost:8080/api/products/updateProduct",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"_id\": \"5d47fcfee0fe5e42a27d4861\",\n\t\"name\": \"Realme K20 Pro\",\n\t\"description\": \"An awesome Device with good specs\",\n\t\"price\": \"14999\",\n\t\"currency\": \"Rs\",\n\t\"category\": \"Electornics\",\n\t\"units\": \"1\",\n\t\"images\": [],\n\t\"warrantyDetails\": \"The manufacturer is providing 1 year of warranty on this product\"\n}\n"
+				},
+				"description": "Update the product"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Product by ID",
+			"request": {
+				"url": "http://localhost:8080/api/products/deleteProductById/5d47fcfee0fe5e42a27d4861",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": "Delete a prouct by ID"
+			},
+			"response": []
+		}
+	]
+}
