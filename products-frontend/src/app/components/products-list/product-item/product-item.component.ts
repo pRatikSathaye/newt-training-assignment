@@ -19,5 +19,4 @@ export class ProductItemComponent implements OnInit {
   onNavigate(productId: string) {
     this.router.navigate([productId], { relativeTo: this.route });
   }
-
 }

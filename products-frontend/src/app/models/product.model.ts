@@ -33,4 +33,36 @@ export class Product {
     getId() {
       return this._id;
     }
+
+    getName() {
+      return this.name;
+    }
+
+    getDescription() {
+      return this.description;
+    }
+
+    getCategory() {
+      return this.category;
+    }
+
+    getPrice() {
+      return this.price;
+    }
+
+    getCurrency() {
+      return this.currency;
+    }
+
+    getWarrantyDetails() {
+      return this.warrantyDetails;
+    }
+
+    getUnits() {
+      return this.units;
+    }
+
+    getImages() {
+      return this.images;
+    }
 }

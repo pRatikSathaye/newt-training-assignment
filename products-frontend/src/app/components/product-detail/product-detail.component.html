@@ -1,6 +1,16 @@
 <div class="row">
   <div class="col-md-5 align-item-center">
-    <img src="https://perfume10.worldsecuresystems.com/images/products/placeholder-product-image-large.png" alt="Product Image">
+    <img
+      *ngIf="product.images"
+      [src]="product.images[0]"
+      class="img-responsive"
+      width='100%'
+    >
+    <img
+      *ngIf="!product.images"
+      src="https://perfume10.worldsecuresystems.com/images/products/placeholder-product-image-large.png"
+      alt="Product Image"
+    >
   </div>
   <div class="col-md-7">
     <h3>Product Details</h3>
@@ -11,7 +21,7 @@
     <p class="font-weight-normal">Units: {{ product.units }} Unit</p>
     <div class="btn-actions">
       <button type="button" class="btn btn-primary mr-1" (click)="onEdit()">Edit</button>
-      <button type="button" class="btn btn-danger">Delete</button>
+      <button type="button" class="btn btn-danger" (click)="onDelete()">Delete</button>
     </div>
   </div>
 </div>

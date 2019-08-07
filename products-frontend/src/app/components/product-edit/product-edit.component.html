@@ -1,41 +1,85 @@
 <div class="row">
   <div class="col-md-12">
-    <form>
+    <div class="error-container">
+      <div class="alert alert-danger" *ngFor="let error of errors">{{ error.message }}</div>
+    </div>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <div class="form-group">
         <label for="product-name">Product Name</label>
-        <input type="text" id="product-name" name="productName" class="form-control" />
+        <input type="text" id="product-name" name="name" class="form-control" ngModel required #name="ngModel" />
+        <span class="help-block" *ngIf="!name.valid && name.touched">Please enter a name.</span>
       </div>
       <div class="form-group">
         <label for="product-description">Product Description</label>
-        <textarea name="productDesc" id="product-description" rows="4" class="form-control"></textarea>
+        <textarea
+          name="description"
+          id="product-description"
+          rows="4"
+          class="form-control"
+          ngModel
+          required
+          #description="ngModel"
+        ></textarea>
+        <span class="help-block" *ngIf="!description.valid && description.touched">Please enter description.</span>
       </div>
       <div class="form-group">
         <label for="product-category">Product Category</label>
-        <input type="text" name="productCategory" id="product-category" class="form-control" />
+        <input
+          type="text"
+          name="category"
+          id="product-category"
+          class="form-control"
+          ngModel
+          required
+          #category="ngModel"
+        />
+        <span class="help-block" *ngIf="!category.valid && category.touched">Please enter a category.</span>
       </div>
       <div class="form-group">
         <label for="product-price">Product Price</label>
-        <input type="number" name="productPrice" id="product-price" class="form-control" />
+        <input type="number" name="price" id="product-price" class="form-control" ngModel required #price="ngModel" />
+        <span class="help-block" *ngIf="!price.valid && price.touched">Please enter price.</span>
       </div>
       <div class="form-group">
         <label for="product-currency">Product Currency</label>
-        <input type="text" name="productPrice" id="product-currency" class="form-control" />
+        <input
+          type="text"
+          name="currency"
+          id="product-currency"
+          class="form-control"
+          ngModel
+          required
+          #currency="ngModel"
+        />
+        <span class="help-block" *ngIf="!currency.valid && currency.touched">Please enter currency.</span>
       </div>
       <div class="form-group">
         <label for="product-warranty-details">Product Warranty Details</label>
-        <input type="text" name="productWarrantyDetails" id="product-warranty-details" class="form-control" />
+        <input
+          type="text"
+          name="warrantyDetails"
+          id="product-warranty-details"
+          class="form-control"
+          ngModel
+          required
+          #warrantyDetails="ngModel"
+        />
+        <span class="help-block" *ngIf="!warrantyDetails.valid && warrantyDetails.touched"
+          >Please enter warranty details.</span
+        >
       </div>
       <div class="form-group">
         <label for="product-units">Product Units</label>
-        <input type="text" name="productUnits" id="product-units" class="form-control" />
+        <input type="text" name="units" id="product-units" class="form-control" ngModel required #units="ngModel" />
+        <span class="help-block" *ngIf="!units.valid && units.touched">Please enter units.</span>
       </div>
       <div class="form-group">
-        <label for="product-images">Product Name</label>
-        <input type="text" name="productImages" id="product-images" class="form-control" />
+        <label for="product-images">Product Images</label>
+        <input type="text" name="images" id="product-images" class="form-control" ngModel />
       </div>
       <div class="form-group">
-        <button class="btn btn-primary mr-1">Add</button>
-        <button class="btn btn-default">Cancel</button>
+        <button class="btn btn-primary mr-1" [disabled]="f.valid">{{ editMode ? 'Update' : 'Add' }}</button>
+        <button class="btn btn-default" (click)="onCancel()">Cancel</button>
       </div>
     </form>
   </div>
