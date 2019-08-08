@@ -8,6 +8,7 @@
 
 * Install Maven (https://maven.apache.org/download.cgi)
 * Install Java 11 (https://www.oracle.com/technetwork/java/javase/downloads/jdk11-downloads-5066655.html)
+* Install MongoDB (https://www.mongodb.com/what-is-mongodb)
 
 #### Setup
 
@@ -31,6 +32,10 @@
 * Go to **products-frontend** folder
 * Open command prompt and run **npm install && ng serve**
 * Application will run at **http://localhost:4200**
+
+#### POSTMAN Collection file
+* If you have postman you can use this file to import Collection into postman and start sending request to backend for testing purpose. (**Products Services.postman_collection.json**)
+
 
 
 ## NOTE
